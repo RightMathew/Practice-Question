@@ -54,18 +54,24 @@ void dashboard()
 
 void lock()
 {
-    int lc;
-    printf("Are You sure want to Lock the Election : (1/0)\n");
-    scanf("%d", &lc);
-    if (lc == 1)
+    char lc;
+    printf("Are You sure want to Lock/Release the Election : \n( l for Lock/ r for Release)\n");
+    scanf(" %c", &lc);
+    if (lc == 'l')
     {
         lockflag = 1;
         printf("The Election is Successfully Closed.\n");
     }
-    else
+    else if (lc == 'r')
     {
         lockflag = 0;
         printf("Voting is Open.\n");
+        a1ab = a1cd = a2ef = a2gh = a2ij = 0;
+        
+    }
+    else
+    {
+        printf("Invalid Input.\n");
     }
 }
 
@@ -144,7 +150,6 @@ void result()
                 printf("The Winner is %s\n", area1str[1]);
             }
             
-            a1ab = a1cd = 0;
             
         }
         else if (resch == 2)
@@ -170,7 +175,6 @@ void result()
                 printf("The Winner is %s\n", area2str[2]);
             }
             
-            a2ef = a2gh = a2ij = 0;
             
         }
         else if (resch == 3)
