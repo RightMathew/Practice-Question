@@ -2,7 +2,7 @@
 
 int max(int *a, int *b);
 
-int (*maxim)(int *a, int *b);
+int (*maxim)(int* , int*);
 
 int main()
 {
