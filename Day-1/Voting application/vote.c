@@ -2,6 +2,7 @@
 
 void dashboard();
 void castvote();
+
 void result();
 
 
@@ -16,7 +17,7 @@ void dashboard()
     int chc;
     do{
         printf("*****Welcome to 2022 Election*****");
-        printf("Select the Options : \n1.Cast Vote \n2.Results \n99. Exit\n");
+        printf("\n1.Cast Vote \n2.Results \n3.Lock \n99. Exit\n");
         scanf("%d", &chc);
         switch(chc)
         {
@@ -25,6 +26,10 @@ void dashboard()
                 break;
             }
             case 2: {
+                
+                break;
+            }
+            case 3: {
                 
                 break;
             }
@@ -44,9 +49,21 @@ void dashboard()
 void castvote()
 {
     int ch;
-    printf("Select Your Area : \n1. Area--1\t2. Area--2\t3. Main Menu");
+    int canch;
+    printf("Select Your Area : \n1. Area--1\t2. Area--2\t3. Main Menu\n");
     scanf("%d", &ch);
+    if (ch == 1)
+    {   
+        char* area1str[2] = {"ab","cd"};
+        printf("----- Area - 1 ------\n");
+        printf("Select the candidate you like to vote.\n1.ab\n2.cd\n");
+        scanf("%d", &canch);
+        voteconfirm(area1str, canch);
+    }
         
 }
-
+void voteconfirm(char* area1str[], int canch)
+{
+    printf("%s %d\n", area1str[canch-1], canch);
+}
 
