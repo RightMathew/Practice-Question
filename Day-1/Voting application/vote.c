@@ -22,7 +22,7 @@ void dashboard()
 {
     int chc;
     do{
-        printf("*****Welcome to 2022 Election*****");
+        printf("*****  Welcome to 2022 Election  *****");
         printf("\n1.Cast Vote \n2.Results \n3.Lock \n99. Exit\n");
         scanf("%d", &chc);
         switch(chc)
@@ -54,7 +54,19 @@ void dashboard()
 
 void lock()
 {
-    lockflag = 1;
+    int lc;
+    printf("Are You sure want to Lock the Election : (1/0)\n");
+    scanf("%d", &lc);
+    if (lc == 1)
+    {
+        lockflag = 1;
+        printf("The Election is Successfully Closed.\n");
+    }
+    else
+    {
+        lockflag = 0;
+        printf("Voting is Open.\n");
+    }
 }
 
 void castvote()
