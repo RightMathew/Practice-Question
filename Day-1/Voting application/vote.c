@@ -20,11 +20,15 @@ int main()
 
 void dashboard()
 {
+    
     int chc;
+    
     do{
+        
         printf("*****  Welcome to 2022 Election  *****");
         printf("\n1.Cast Vote \n2.Results \n3.Lock \n99. Exit\n");
         scanf("%d", &chc);
+        
         switch(chc)
         {
             case 1: { 
@@ -52,11 +56,13 @@ void dashboard()
     
 }
 
+
 void lock()
 {
     char lc;
     printf("Are You sure want to Lock/Release the Election : \n( l for Lock/ r for Release)\n");
     scanf(" %c", &lc);
+    
     if (lc == 'l')
     {
         lockflag = 1;
@@ -75,6 +81,7 @@ void lock()
     }
 }
 
+
 void castvote()
 {
     if (lockflag == 0)
@@ -91,7 +98,7 @@ void castvote()
             scanf("%d", &canch);
             voteconfirm(area1str, canch);
         }
-        if (ch == 2)
+        else if (ch == 2)
         {
             
             printf("----- Area - 2 ------\n");
@@ -103,6 +110,8 @@ void castvote()
     else
         printf("Election Ended. Check Result!!\n");
 }
+
+
 void voteconfirm(char* str[], int canch)
 {
     char con;
@@ -113,22 +122,22 @@ void voteconfirm(char* str[], int canch)
         printf("Voted Successfully for party/candidate ab\n");
         a1ab++;
     }
-    else if(str[canch-1] == "cd")
+    else if(str[canch-1] == "cd" && con == 'y')
     {
         printf("Voted Successfully for party/candidate cd\n");
         a1cd++;
     }
-    else if(str[canch-1] == "ef")
+    else if(str[canch-1] == "ef" && con == 'y')
     {
         printf("Voted Successfully for party/candidate ef\n");
         a2ef++;
     }
-    else if(str[canch-1] == "gh")
+    else if(str[canch-1] == "gh" && con == 'y')
     {
         printf("Voted Successfully for party/candidate gh\n");
         a2gh++;
     }
-    else if(str[canch-1] == "ij")
+    else if(str[canch-1] == "ij" && con == 'y')
     {
         printf("Voted Successfully for party/candidate ij\n");
         a2ij++;
@@ -142,9 +151,12 @@ void voteconfirm(char* str[], int canch)
         printf("Invalid Input");
     }
 }
+
+
 void result()
 {
     int resch;
+    
     if (lockflag == 1)
     {
         printf("Election Results\nSelect The Area : \n");
@@ -177,6 +189,18 @@ void result()
             if (a2ef > a2gh && a2ef > a2ij)
             {
                 printf("The Winner is %s\n", area2str[0]);
+            }
+            else if (a2ef == a2gh && a2gh != a2ij)
+            {
+                printf("Both %s and %s Secured same Vote\n", area2str[0], area2str[1]);
+            }    
+            else if (a2gh == a2ij && a2gh != a2ef)
+            {
+                printf("Both %s and %s Secured same Vote\n", area2str[1], area2str[2]);
+            }
+            else if (a2ef == a2ij && a2gh != a2ef)
+            {
+                printf("Both %s and %s Secured same Vote\n", area2str[0], area2str[2]);
             }
             else if (a2gh > a2ij)
             {
