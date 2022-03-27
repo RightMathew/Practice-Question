@@ -2,7 +2,7 @@
 
 void dashboard();
 void castvote();
-void voteconfirm(char* str[], int canch, int ch);
+void voteconfirm(char* str[], int canch);
 void result();
 void lock();
 
@@ -89,7 +89,7 @@ void castvote()
             printf("----- Area - 1 ------\n");
             printf("Select the candidate you like to vote.\n1.ab\n2.cd\n");
             scanf("%d", &canch);
-            voteconfirm(area1str, canch, ch);
+            voteconfirm(area1str, canch);
         }
         if (ch == 2)
         {
@@ -97,13 +97,13 @@ void castvote()
             printf("----- Area - 2 ------\n");
             printf("Select the candidate you like to vote.\n1.ef\n2.gh\n3.ij\n");
             scanf("%d", &canch);
-            voteconfirm(area2str, canch, ch);
+            voteconfirm(area2str, canch);
         }
     }
     else
         printf("Election Ended. Check Result!!\n");
 }
-void voteconfirm(char* str[], int canch, int ch)
+void voteconfirm(char* str[], int canch)
 {
     char con;
     printf("Are You Sure you want to vote for %s Candidate/party : (y/n):\n", str[canch-1]);
@@ -115,23 +115,31 @@ void voteconfirm(char* str[], int canch, int ch)
     }
     else if(str[canch-1] == "cd")
     {
+        printf("Voted Successfully for party/candidate cd\n");
         a1cd++;
     }
     else if(str[canch-1] == "ef")
     {
+        printf("Voted Successfully for party/candidate ef\n");
         a2ef++;
     }
     else if(str[canch-1] == "gh")
     {
+        printf("Voted Successfully for party/candidate gh\n");
         a2gh++;
     }
     else if(str[canch-1] == "ij")
     {
+        printf("Voted Successfully for party/candidate ij\n");
         a2ij++;
+    }
+    else if(con == 'n')
+    {
+        printf("Vote cancelled\n");
     }
     else
     {
-        printf("Vote cancelled\n");
+        printf("Invalid Input");
     }
 }
 void result()
