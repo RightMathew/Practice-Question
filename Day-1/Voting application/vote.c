@@ -105,8 +105,12 @@ void castvote()
 }
 void voteconfirm(char* str[], int canch, int ch)
 {
-    printf("%s %d %d\n", str[canch-1], canch, ch);
-    if (str[canch-1] == "ab"){
+    char con;
+    printf("Are You Sure you want to vote for %s Candidate/party : (y/n):\n", str[canch-1]);
+    scanf(" %c", &con);
+    
+    if (str[canch-1] == "ab" && con == 'y'){
+        printf("Voted Successfully for party/candidate ab\n");
         a1ab++;
     }
     else if(str[canch-1] == "cd")
@@ -124,6 +128,10 @@ void voteconfirm(char* str[], int canch, int ch)
     else if(str[canch-1] == "ij")
     {
         a2ij++;
+    }
+    else
+    {
+        printf("Vote cancelled\n");
     }
 }
 void result()
