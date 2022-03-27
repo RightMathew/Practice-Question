@@ -190,10 +190,22 @@ void result()
             {
                 printf("The Winner is %s\n", area2str[0]);
             }
+            else if (a2gh > a2ij && a2gh > a2ef)
+            {
+                printf("The Winner is %s\n", area2str[1]);
+            }
+            else if (a2gh < a2ij && a2ij > a2ef)
+            {
+                printf("The Winner is %s\n", area2str[2]);
+            }
+            else if (a2ef == a2gh && a2gh == a2ij)
+            {
+                printf("All Parties secured same amount of Vote\n");
+            }
             else if (a2ef == a2gh && a2gh != a2ij)
             {
                 printf("Both %s and %s Secured same Vote\n", area2str[0], area2str[1]);
-            }    
+            }
             else if (a2gh == a2ij && a2gh != a2ef)
             {
                 printf("Both %s and %s Secured same Vote\n", area2str[1], area2str[2]);
@@ -202,19 +214,6 @@ void result()
             {
                 printf("Both %s and %s Secured same Vote\n", area2str[0], area2str[2]);
             }
-            else if (a2gh > a2ij)
-            {
-                printf("The Winner is %s\n", area2str[1]);
-            }
-            else if (a2ef == a2gh && a2gh == a2ij)
-            {
-                printf("All Parties secured same amount of Vote\n");
-            }
-            else
-            {
-                printf("The Winner is %s\n", area2str[2]);
-            }
-            
             
         }
         else if (resch == 3)
