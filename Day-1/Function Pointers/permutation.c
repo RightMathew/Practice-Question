@@ -1,44 +1,48 @@
 #include <stdio.h>
 #include <string.h>
 
+void permu(char *a, int l, int r);
+void swap(char *x, char *y);
+
+void (*p)(char *,int,int);
+void (*s)(char *,char *);
 
 int main()
 {
-    char string[20];
+    char str[20];
     int n;
     
     printf("Enter a string: ");
-    scanf("%s", string);
+    scanf("%s", str);
     
-    n = strlen(string);
-    permutation(string, 0, n-1);
+    n = strlen(str);
+    p = permu;
+    p(str, 0, n-1);
     
     return 0;
 }
 
-void permutation(char *a, int l, int r)
+void permu(char *a, int l, int r)
 {
    int i;
-  
+   s = swap;
    if (l == r)
      printf("%s\n", a);
    else
    {
        for (i = l; i <= r; i++)
        {
-          swap((a+l), (a+i));
-          permutation(a, l+1, r);
-          swap((a+l), (a+i));
+          s((a+l), (a+i));
+          permu(a, l+1, r);
+          s((a+l), (a+i));
        }
    }
 }
 
 
-
 void swap(char *x, char *y)
 {
     char temp;
-    printf("%c %c\n", x,y);
     temp = *x;
     *x = *y;
     *y = temp;
