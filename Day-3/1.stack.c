@@ -8,14 +8,14 @@ void display();
 void pop();
 void peep();
 
-void (*i)();
+void (*ptr)();
 
 int arr[Length], top = -1;
 
 int main()
 {
-    i = initialize;
-    i();
+    ptr = initialize;
+    ptr();
     
     return 0;
 }
@@ -39,20 +39,20 @@ void initialize()
         switch(ch)
         {
             case 1:
-                i = push;
-                i();
+                ptr = push;
+                ptr();
                 break;
             case 2:
-                i = pop;
-                i();
+                ptr = pop;
+                ptr();
                 break;
             case 3:
-                i = peep;
-                i();
+                ptr = peep;
+                ptr();
                 break;
             case 4:
-                i = display;
-                i();
+                ptr = display;
+                ptr();
                 break;
             case 5:
                 printf("\n Thank You");
