@@ -4,16 +4,16 @@
 #define Length 100
 
 void getdetails();
+void print(int n);
 
 void (*g)();
 
-typedef struct product
+struct product
 {
     int p_id;
     char p_name[20];
     float p_price;
     char p_expdate[20];
-    
     
 };
 
@@ -52,7 +52,22 @@ void getdetails()
         
         printf("\nEnter Product Expiry Date : ");
         scanf("%s", arr[i]->p_expdate);
-    
         
     }
+    print(n);
+}
+
+void print(int n)
+{
+    
+    printf("\nProduct Details : \n");   
+    for(int i = 0; i < n; i++){
+        
+        printf("Product : %d\n", i + 1);
+        printf("\nProduct Id : %d", arr[i]->p_id);
+        printf("\nProduct Name : %s", arr[i]->p_name);
+        printf("\nProduct Price : %.2f", arr[i]->p_price);
+        printf("\nProduct Expiry Date : %s\n", arr[i]->p_expdate);
+    }
+    
 }
