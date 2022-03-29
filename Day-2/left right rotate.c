@@ -3,9 +3,9 @@
 #define Length 100
 
 void getNumbers();
-void RightRotate(int *arr, int n);
-void LeftRotate(int *arr, int n);
-void print(int *arr, int n);
+void RightRotate(int arr[], int n);
+void LeftRotate(int arr[], int n);
+void print(int arr[], int n);
 
 int main()
 {
@@ -44,7 +44,7 @@ void getNumbers()
     }while(ch != 3);
 }
 
-void LeftRotate(int *arr, int n){
+void LeftRotate(int arr[], int n){
     
     int temp,i,j,k;
     printf("Enter Times Left Rotate: ");
@@ -67,7 +67,7 @@ void LeftRotate(int *arr, int n){
     print(arr,n);
     
 }
-void RightRotate(int *arr, int n)
+void RightRotate(int arr[], int n)
 {
     int temp,i,j,k;
     printf("Enter Times Right Rotate: ");
@@ -91,7 +91,7 @@ void RightRotate(int *arr, int n)
     
 }
 
-void print(int *arr, int n)
+void print(int arr[], int n)
 {
     
     for(int i = 0; i < n; i++)
