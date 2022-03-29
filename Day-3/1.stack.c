@@ -5,7 +5,8 @@
 void initialize();
 void push();
 void display();
-
+void pop();
+void peep();
 
 void (*i)();
 
@@ -26,7 +27,7 @@ void initialize()
     
     do 
     {
-        printf("\n *****Main Menu*****");
+        printf("\n\n *****Main Menu*****");
         printf("\n 1. PUSH");
         printf("\n 2. POP");
         printf("\n 3. PEEP");
@@ -38,14 +39,20 @@ void initialize()
         switch(ch)
         {
             case 1:
-                push();
+                i = push;
+                i();
                 break;
             case 2:
+                i = pop;
+                i();
                 break;
             case 3:
+                i = peep;
+                i();
                 break;
             case 4:
-                display();
+                i = display;
+                i();
                 break;
             case 5:
                 printf("\n Thank You");
@@ -61,7 +68,7 @@ void display()
 {
     if (top == -1)
     {
-        printf("The Stack is Empty");
+        printf("\n The Stack is Empty");
     }
     else
     {
@@ -90,6 +97,36 @@ void push()
     {
         top++;
         arr[top]=val;
+        printf(" %d is Pushed into Stack", val);
     }
     
+}
+
+void pop()
+{
+    int val;
+    
+    if (top == -1)
+    {
+        printf("\n STACK UNDERFLOW");
+    }
+    else
+    {
+        val = arr[top];
+        top--;
+        printf("\n The value poped from Stack is : %d", val);
+    }
+}
+
+void peep()
+{
+    
+    if (top == -1)
+    {
+        printf("\n Stack is Empty");
+    }
+    else
+    {
+        printf("\n The element at the top of the Stack : %d", arr[top]);
+    }
 }
