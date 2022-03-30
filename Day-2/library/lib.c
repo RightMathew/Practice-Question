@@ -15,6 +15,11 @@ struct student{
     
 };
 
+struct student stud[100];
+stud[0] = (struct student *)malloc(sizeof(struct student));
+stud[0]->s_id = 100;
+stud[0]->s_name = "mat";
+
 int main()
 {
     int ch;
@@ -49,7 +54,7 @@ int main()
             }
             case 4:
             {
-                
+                add_student();
                 break;
             }
             case 5:
@@ -70,4 +75,9 @@ int main()
     }while(ch != 6);
     
     return 0;
+}
+
+void add_student()
+{
+    
 }
