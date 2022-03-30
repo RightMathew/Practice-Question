@@ -8,19 +8,21 @@ void enqueue();
 void dequeue();
 void display();
 
+void (*ptr)();
 
 struct queue{
     
     int arr[Length];
-    int rear = -1;
-    int front = -1;
+    
 }q;
+
+int rear = -1, front = -1;
 
 int main()
 {
     
-    initalize();
-    
+    ptr = initalize;
+    ptr();    
     return 0;
 }
 
@@ -30,7 +32,7 @@ void initalize()
     int ch;
     
     do {
-        printf("\n\tQueue")
+        printf("\n  *****Queue*****");
         
         printf("\n 1. Enqueue Operation");
         printf("\n 2. Dequeue Operation");
@@ -41,11 +43,14 @@ void initalize()
         
         switch(ch){
             
-            case 1 : enqueue();
+            case 1 : ptr = enqueue;
+                ptr();
                 break;
-            case 2 : dequeue();
+            case 2 : ptr = dequeue;
+                ptr();
                 break;
-            case 3 : display();
+            case 3 : ptr = display;
+                ptr();
                 break;
             case 4 : printf("Thank You");
                 break;
@@ -61,50 +66,50 @@ void enqueue()
     
     int value;
     
-    if (q.rear == Length-1)
+    if (rear == Length-1)
     {
         printf("Queue Overflow");
     }
     else {
         
-        if (q.front == -1){
-            q.front = 0;
+        if (front == -1){
+            front = 0;
         }
         
         printf("\n Enter the number to be inserted : ");
         scanf("%d", &value);
         
-        q.rear++;
-        q.arr[q.rear] = value;
+        rear++;
+        q.arr[rear] = value;
     }
 }
 
 void dequeue()
 {
     
-    if (q.front == -1)
+    if (front == -1)
     {
         printf("\n Stack Underflow");
     }
     else{
         
-        printf("\n Element deleted from the queue is %d ", q.arr[q.front]);
-        q.front++;
+        printf("\n Element deleted from the queue is %d ", q.arr[front]);
+        front++;
     }
 }
 
 void display()
 {
     
-    if (q.front == -1){
+    if (front == -1){
         printf("\n Queue is Empty");
     }
     else
     {
         
         printf("\n Queue : \n");
-        for(int i = q.front; i <= q.rear; i++){
-            printf("%d", q.arr[i]);
+        for(int i = front; i <= rear; i++){
+            printf("-| %d |", q.arr[i]);
         }
     }
     
