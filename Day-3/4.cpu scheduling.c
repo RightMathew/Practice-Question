@@ -40,7 +40,7 @@ void initalize(){
 int avgtime(int arr[], int n, int busarr[])
 {
   
-    int waittime[n], tunardt[n], total_wt = 0, total_tunard;
+    int waittime[n], tunardt[n], total_wt = 0, total_tunard = 0;
   
     wait_time(arr, n, busarr, waittime);
     
@@ -58,9 +58,9 @@ int avgtime(int arr[], int n, int busarr[])
         
     }
     
-    printf("Average waiting time = %f\n", (float)total_wt / (float)n);
+    printf("Average waiting time = %.2f\n", (float)total_wt / (float)n);
     
-    printf("Average turn around time = %f\n", (float)total_tunard / (float)n);
+    printf("Average turn around time = %.2f\n", (float)total_tunard / (float)n);
     
     return 0;
     
