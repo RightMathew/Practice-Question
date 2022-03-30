@@ -89,7 +89,7 @@ void dequeue()
     
     if (front == -1)
     {
-        printf("\n Stack Underflow");
+        printf("\n Queue Underflow");
     }
     else{
         
