@@ -29,7 +29,7 @@ void initalize(){
     
     for(int i = 0;i < n; i++)
     {
-        scanf("%d", busarr);
+        scanf("%d", &busarr[i]);
     }
     
     avgtime(arr, n, busarr);
