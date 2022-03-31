@@ -21,6 +21,8 @@ struct node *insert_end(struct node *);
 struct node *delete_beg(struct node *);
 struct node *delete_end(struct node *);
 struct node *del_list(struct node *);
+struct node *search(struct node *);
+struct node *reverse(struct node *);
 
 int main()
 {
@@ -44,7 +46,9 @@ void initalize(){
         printf("\n 5. Delete node at the Begining");
         printf("\n 6. Delete node at the End");
         printf("\n 7. Delete entire List");
-        printf("\n 8. Exit");
+        printf("\n 8. Search a Number");
+        printf("\n 9. Reverse List");
+        printf("\n 10. Exit");
         printf("\n Enter option : ");
         scanf("%d", &ch);
         switch(ch){
@@ -87,6 +91,14 @@ void initalize(){
             }
             case 8:
             {
+                start = search(start);
+                break;
+            }
+            case 9:
+                start = reverse(start);
+                break;
+            case 10:
+            {
                 printf("Thank You");
                 break;
             }
@@ -96,7 +108,7 @@ void initalize(){
                 break;
             }
         }
-    }while(ch != 8);
+    }while(ch != 10);
     
 }
 
@@ -244,4 +256,41 @@ struct node *del_list(struct node *start)
     else{
         printf("\n The list is empyt. ");
     }
+    
+    return start;
+}
+
+struct node *search(struct node *start)
+{
+    
+    struct node *ptr;
+    int num, cnt = 0;
+    
+    printf("\n Enter The number to be searched : ");
+    scanf("%d", &num);
+    
+    ptr = start;
+    if(ptr-> next == NULL && ptr->data != num){
+        
+        printf("Not Found");
+    }
+    
+    while (ptr->next != NULL)
+    {
+        if (ptr->data == num)
+        {
+            printf("Number Found in pos %d", cnt);
+        }
+        
+        ptr = ptr->next;
+        
+        cnt++;
+    }
+    
+    return start;
+}
+
+struct node *reverse(struct node *start)
+{
+    return start;
 }
