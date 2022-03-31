@@ -96,7 +96,7 @@ void initalize(){
                 break;
             }
         }
-    }while(ch != 7);
+    }while(ch != 8);
     
 }
 
@@ -214,7 +214,7 @@ struct node *delete_end(struct node *start)
     
     while(ptr -> next != NULL)
     {
-        preptr = ptr
+        preptr = ptr;
         ptr = ptr -> next;
     }
     
