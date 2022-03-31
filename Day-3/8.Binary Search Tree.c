@@ -10,12 +10,16 @@ typedef struct node {
 }Node;
 
 
-Node *create();
+Node *create(int num);
 void insert(Node *,Node *);
 void preorder(Node *);
 void initalize();
+void ent_num();
 
 void (*i)();
+
+
+Node *root = NULL;
 
 int main()
 {
@@ -27,15 +31,49 @@ int main()
 
 void initalize()
 {
-    
-    char ch;
-    Node *root = NULL, *temp;
+    int ch;
     
     do {
+        printf("\n *****Main Menu*****");
+        printf("\n 1. Enter Number");
+        printf("\n 2. Preorder");
+        printf("\n 3. Exit");
+        printf("\n Enter Option : ");
+        scanf("%d", &ch);
         
-        temp = create();
-        if (root==NULL)
+        switch(ch)
         {
+            case 1 :
+                ent_num();
+                break;
+            case 2 :
+                preorder(root);
+                break;
+            case 3 : 
+                printf("\n Thank You");
+                break;
+            default :
+                printf("\n Invalid Input");
+        }
+    }while(ch != 3);
+    
+}
+
+void ent_num()
+{
+    int num;
+    Node *temp;
+    
+    printf("\n Enter the Number to insert into tree (-1 to Exit): ");
+    scanf("\%d", &num);
+    
+    while(num != -1)
+    {
+        temp = create(num);
+        
+        if (root == NULL)
+        {
+            
             root = temp;
         }
         else
@@ -43,33 +81,28 @@ void initalize()
             insert(root, temp);
         }
         
-        printf("\n Do you want to enter more(y/n)?");
-        getchar();
-        scanf("%c",&ch);
-    }  
-    while(ch=='y'|ch=='Y');
-        
-    printf("nPreorder Traversal: ");
-        
-    preorder(root);
+        printf("\n Enter the Number to insert into tree (-1 to Exit): ");
+        scanf("%d", &num);
+    }
     
 }
 
-Node *create()
+
+Node *create(int num)
 {
     
-    Node *temp;
-    
-    printf ("\n Enter the Number to Create the root node : ");
+    Node *tem;
   
-    temp = (Node *) malloc (sizeof (Node));
+    tem = (Node *) malloc (sizeof (Node));
   
-    scanf ("%d", &temp->data);
+    tem->data = num;
   
-    temp->left = temp->right = NULL;
+    tem->left = tem->right = NULL;
   
-    return temp;
+    return tem;
 }
+
+
 
 void insert(Node *root,Node *temp)
 {   
@@ -98,6 +131,7 @@ void insert(Node *root,Node *temp)
         }
     }
 }
+ 
  
 void preorder(Node *root)
 {
