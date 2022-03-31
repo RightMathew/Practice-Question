@@ -1,373 +1,123 @@
 #include<stdio.h>
 #include<conio.h>
-#include<stdlib.h>
-#include<malloc.h>
+#define N 10
 
-void initalize();
+void initialize();
+void push();
+void display();
+void pop();
+void peep();
+void (*ptr)();
 
-void (*i)();
-
-struct node{
-    
-    int data;
-    struct node *next;
-    struct node *prev;
-    
-};
-
-struct node *start = NULL;
-struct node *create_ll(struct node *);
-struct node *display(struct node *);
-struct node *insert_beg(struct node *);
-struct node *insert_end(struct node *);
-struct node *delete_beg(struct node *);
-struct node *delete_end(struct node *);
-struct node *del_list(struct node *);
-struct node *search(struct node *);
-struct node *insert_aft(struct node *);
-struct node *del_node(struct node *);
+int Array_Val[N], Top = -1;
 
 int main()
 {
-    i = initalize;
-    i();
-    return 0;
+    ptr = initialize;
+    ptr();
     
+    return 0;
 }
 
-void initalize(){
-    
+void initialize()
+{
     int ch;
     
-    do {
-        
-        printf("\n *****MAIN MENU*****");
-        printf("\n 1. Create a List");
-        printf("\n 2. Display a List");
-        printf("\n 3. Add node at the Begining");
-        printf("\n 4. Add node at the end");
-        printf("\n 5. Add Node after a number");
-        printf("\n 6. Delete node at the Begining");
-        printf("\n 7. Delete node at the End");
-        printf("\n 8. Delete a node");
-        printf("\n 9. Delete entire List");
-        printf("\n 10. Search a Number");
-        printf("\n 11. Exit");
-        printf("\n Enter option : ");
+    do 
+    {
+        printf("\n 1. PUSH");
+        printf("\n 2. POP");
+        printf("\n 3. PEEP");
+        printf("\n 4. DISPLAY");
+        printf("\n 5. EXIT");
+        printf("\n *******************");
+        printf("\n\n Enter the Option : ");
         scanf("%d", &ch);
-        switch(ch){
-            
+        switch(ch)
+        {
             case 1:
-            {
-                start = create_ll(start);
+                ptr = push;
+                ptr();
                 break;
-            }
             case 2:
-            {
-                
-                start = display(start);
+                ptr = pop;
+                ptr();
                 break;
-            }
             case 3:
-            {
-                start = insert_beg(start);
+                ptr = peep;
+                ptr();
                 break;
-            }
             case 4:
-            {
-                start = insert_end(start);
+                ptr = display;
+                ptr();
                 break;
-            }
-            case 5:
-            {
-                start = insert_aft(start);
-                break;
-            }
-            case 6:
-            {
-                start = delete_beg(start);
-                break;
-            }
-            case 7:
-            {
-                start = delete_end(start);
-                break;
-            }
-            case 8:
-            {
-                start = del_node(start);
-                break;
-            }
-            case 9:
-            {
-                start = del_list(start);
-                break;
-            }
-            case 10:
-            {
-                start = search(start);
-                break;
-            }
-            case 11:
-            {
-                printf("Thank You");
-                break;
-            }
-            default:
-            {
-                printf("Invalid Input");
-                break;
-            }
-        }
-    }while(ch != 11);
-    
-}
-
-struct node *create_ll(struct node *start)
-{
-    
-    struct node *new_node, *ptr;
-    int num;
-    printf("\n Enter the data to be added (-1 to exit) : ");
-    scanf("%d", &num);
-    
-    while(num != -1)
-    {
-        if (start == NULL)
-        {
+            default :
+                printf("\n Invalid Choose Correct One");
             
-            new_node = (struct node *)malloc(sizeof(struct node));
-            new_node-> prev = NULL;
-            new_node-> data = num;
-            new_node-> next = NULL;
-            start = new_node;
         }
-        
-        else
+    }while(ch != 5);    
+}
+void display()
+{
+    if (Top == -1)
+    {
+        printf("\n The Stack is Empty");
+    }
+    else
+    {
+        for(int i = Top; i >= 0; i--)
         {
-            
-            ptr = start;
-            new_node = (struct node *)malloc(sizeof(struct node));
-            new_node->data = num;
-            while(ptr->next != NULL)
-            {
-                ptr = ptr->next;
-            }
-            
-            ptr->next = new_node;
-            new_node->prev=ptr;
-            new_node->next = NULL;
+            printf("\n|%d|", Array_Val[i]);
+            printf("\n -- ");
         }
-        
-        printf("\n Enter the data to be added (-1 to exit) : ");
-        scanf("%d", &num);
-        
     }
     
-    return start;
 }
-
-struct node *display(struct node *start)
+void push()
 {
-        
-    struct node *ptr;
-    ptr = start;
-    while(ptr != NULL)
+    int Val;
+    
+    printf("\n Enter the Number to be Pushed : ");
+    scanf("%d", &Val);
+    
+    if (Top == N-1)
     {
-        
-        printf("--> %d", ptr -> data);
-        ptr = ptr -> next;
+        printf("\n STACK OVERFLOW");
     }
-    
-    return start;
-}
-
-struct node *insert_beg(struct node *start)
-{
-    
-    struct node *new_node;
-    int num;
-    
-    printf("\n Enter the number to be added in beg : ");
-    scanf("%d", &num);
-    
-    new_node = (struct node *)malloc(sizeof(struct node));
-    new_node -> data = num;
-    start->prev = new_node;
-    new_node -> next = start;
-    new_node -> prev = NULL;
-    start = new_node;
-    printf("\n The node is Inserted at the Begining.");
-    display(start);
-    return start;
-    
-}
-
-struct node *insert_end(struct node *start)
-{
-    struct node *ptr, *new_node;
-    int num;
-    
-    printf("\n Enter the number to be added in the end : ");
-    scanf("%d", &num);
-    
-    new_node = (struct node *)malloc(sizeof(struct node));
-    new_node->data = num;
-    
-    ptr = start;
-    
-    while (ptr->next != NULL)
+    else
     {
-        ptr = ptr->next;
+        Top++;
+        Array_Val[Top]=Val;
+        printf(" %d is Pushed into Stack", Val);
     }
     
-    ptr -> next = new_node;
-    new_node->prev = ptr;
-    new_node->next = NULL;
-    
-    printf("\n The node is Inserted at the end.");
-    display(start);
-    return start;
 }
 
-struct node *delete_beg(struct node *start)
+void pop()
 {
+    int Val;
     
-    struct node *ptr;
-    ptr = start;
-    start = start->next;
-    start->prev = NULL;
-    free(ptr);
-    display(start);
-    return start;
-    
-}
-
-struct node *delete_end(struct node *start)
-{
-    
-    struct node *ptr;
-    ptr = start;
-    
-    while(ptr -> next != NULL)
+    if (Top == -1)
     {
-        ptr = ptr -> next;
+        printf("\n STACK UNDERFLOW");
     }
-    
-    ptr->prev->next = NULL;
-    free(ptr);
-    
-    display(start);
-    return start;
-    
+    else
+    {
+        Val = Array_Val[Top];
+        Top--;
+        printf("\n The value poped : %d", Val);
+    }
 }
 
-struct node *del_list(struct node *start)
+void peep()
 {
     
-    while(start != NULL)
+    if (Top == -1)
     {
-        start = delete_beg(start);
+        printf("\n Stack is Empty");
     }
-    
-    return start;
+    else
+    {
+        printf("\n The element at the top : %d", Array_Val[Top]);
+    }
 }
-
-struct node *search(struct node *start)
-{
-    
-    struct node *ptr;
-    int num, cnt = 1;
-    
-    printf("\n Enter The number to be searched : ");
-    scanf("%d", &num);
-    
-    ptr = start;
-    if(ptr-> next == NULL && ptr->data != num){
-        
-        printf("\n Not Found");
-    }
-    
-    while (ptr->next != NULL)
-    {
-        if (ptr->data == num)
-        {
-            printf("\n Number Found in pos %d", cnt);
-            break;
-        }
-        
-        ptr = ptr->next;
-        
-        cnt++;
-    }
-    
-    return start;
-}
-
-struct node *insert_aft(struct node *start)
-{
-    struct node *new_node, *ptr;
-    int num, val;
-    
-    display(start);
-    
-    printf("\n Enter the Number : ");
-    scanf("%d", &num);
-    
-    printf("\n Enter the Value after which the Number to be inserted : ");
-    scanf("%d", &val);
-    
-    
-    new_node = (struct node *)malloc(sizeof(struct node));
-    new_node -> data = num;
-    
-    ptr = start;
-    
-    while(ptr -> data != val)
-    {
-        
-        ptr = ptr -> next;
-        
-    }
-    
-    new_node-> prev = ptr;
-    new_node->next = ptr->next;
-    ptr->next->prev = new_node;
-    ptr->next = new_node;
-    
-    display(start);
-    
-    return start;
-}
-
-struct node *del_node(struct node *start)
-{
-    
-    struct node *ptr, *temp;
-    int val;
-    
-    display(start);
-    
-    printf("\n Enter the Value of node which has to be deleted : ");
-    scanf("%d", &val);
-    
-    ptr = start;
-    
-    while(ptr -> data != val)
-    {
-        ptr = ptr -> next;
-    }
-        
-        temp = ptr->prev;
-        temp->next = ptr->next;
-        temp = ptr->next;
-        temp->prev = ptr->prev;
-    
-        
-        free(ptr);
-        display(start);
-        
-        
-        return start;
-    }
-    
