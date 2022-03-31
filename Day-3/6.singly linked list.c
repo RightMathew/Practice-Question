@@ -22,7 +22,8 @@ struct node *delete_beg(struct node *);
 struct node *delete_end(struct node *);
 struct node *del_list(struct node *);
 struct node *search(struct node *);
-struct node *reverse(struct node *);
+struct node *insert_aft(struct node *);
+struct node *del_node(struct node *);
 
 int main()
 {
@@ -43,12 +44,13 @@ void initalize(){
         printf("\n 2. Display a List");
         printf("\n 3. Add node at the Begining");
         printf("\n 4. Add node at the end");
-        printf("\n 5. Delete node at the Begining");
-        printf("\n 6. Delete node at the End");
-        printf("\n 7. Delete entire List");
-        printf("\n 8. Search a Number");
-        printf("\n 9. Reverse List");
-        printf("\n 10. Exit");
+        printf("\n 5. Add Node after a number");
+        printf("\n 6. Delete node at the Begining");
+        printf("\n 7. Delete node at the End");
+        printf("\n 8. Delete a node");
+        printf("\n 9. Delete entire List");
+        printf("\n 10. Search a Number");
+        printf("\n 11. Exit");
         printf("\n Enter option : ");
         scanf("%d", &ch);
         switch(ch){
@@ -76,28 +78,35 @@ void initalize(){
             }
             case 5:
             {
-                start = delete_beg(start);
+                start = insert_aft(start);
                 break;
             }
             case 6:
             {
-                start = delete_end(start);
+                start = delete_beg(start);
                 break;
             }
             case 7:
             {
-                start = del_list(start);
+                start = delete_end(start);
                 break;
             }
             case 8:
             {
-                start = search(start);
+                start = del_node(start);
                 break;
             }
             case 9:
-                start = reverse(start);
+            {
+                start = del_list(start);
                 break;
+            }
             case 10:
+            {
+                start = search(start);
+                break;
+            }
+            case 11:
             {
                 printf("Thank You");
                 break;
@@ -108,7 +117,7 @@ void initalize(){
                 break;
             }
         }
-    }while(ch != 10);
+    }while(ch != 11);
     
 }
 
@@ -264,7 +273,7 @@ struct node *search(struct node *start)
 {
     
     struct node *ptr;
-    int num, cnt = 0;
+    int num, cnt = 1;
     
     printf("\n Enter The number to be searched : ");
     scanf("%d", &num);
@@ -272,14 +281,15 @@ struct node *search(struct node *start)
     ptr = start;
     if(ptr-> next == NULL && ptr->data != num){
         
-        printf("Not Found");
+        printf("\n Not Found");
     }
     
     while (ptr->next != NULL)
     {
         if (ptr->data == num)
         {
-            printf("Number Found in pos %d", cnt);
+            printf("\n Number Found in pos %d", cnt);
+            break;
         }
         
         ptr = ptr->next;
@@ -290,7 +300,76 @@ struct node *search(struct node *start)
     return start;
 }
 
-struct node *reverse(struct node *start)
+struct node *insert_aft(struct node *start)
 {
+    struct node *new_node, *ptr, *preptr;
+    int num, val;
+    
+    display(start);
+    
+    printf("\n Enter the Number : ");
+    scanf("%d", &num);
+    
+    printf("\n Enter the Value after which the Number to be inserted : ");
+    scanf("%d", &val);
+    
+    
+    new_node = (struct node *)malloc(sizeof(struct node));
+    new_node -> data = num;
+    
+    ptr = start;
+    preptr = ptr;
+    
+    while(preptr -> data != val)
+    {
+        
+        preptr = ptr;
+        ptr = ptr -> next;
+        
+    }
+    
+    preptr-> next = new_node;
+    new_node->next = ptr;
+    
+    display(start);
+    
     return start;
+}
+
+struct node *del_node(struct node *start)
+{
+    
+    struct node *ptr, *preptr;
+    int val;
+    
+    display(start);
+    
+    printf("\n Enter the Value of node which has to be deleted : ");
+    scanf("%d", &val);
+    
+    ptr = start;
+    
+    if (ptr -> data == val)
+    {
+        
+        start = delete_beg(start);
+        return start;
+    }
+    else
+    {
+        
+        while(ptr -> data != val)
+        {
+            
+            preptr = ptr;
+            ptr = ptr -> next;
+        }
+        
+        preptr -> next = ptr -> next;
+        free(ptr);
+        display(start);
+        return start;
+    }
+    
+    
 }
