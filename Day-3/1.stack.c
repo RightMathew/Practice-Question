@@ -1,15 +1,16 @@
 #include<stdio.h>
 #include<conio.h>
-#define N 10
+#define Length 10
 
 void initialize();
 void push();
 void display();
 void pop();
 void peep();
+
 void (*ptr)();
 
-int Array_Val[N], Top = -1;
+int arr[Length], top = -1;
 
 int main()
 {
@@ -52,22 +53,24 @@ void initialize()
                 ptr();
                 break;
             default :
-                printf("\n Invalid Choose Correct One");
+                printf("\n Invalid Option Choose Correct One : ");
             
         }
     }while(ch != 5);    
 }
+
+
 void display()
 {
-    if (Top == -1)
+    if (top == -1)
     {
         printf("\n The Stack is Empty");
     }
     else
     {
-        for(int i = Top; i >= 0; i--)
+        for(int i = top; i >= 0; i--)
         {
-            printf("\n|%d|", Array_Val[i]);
+            printf("\n|%d|", arr[i]);
             printf("\n -- ");
         }
     }
@@ -75,49 +78,49 @@ void display()
 }
 void push()
 {
-    int Val;
+    int val;
     
     printf("\n Enter the Number to be Pushed : ");
-    scanf("%d", &Val);
+    scanf("%d", &val);
     
-    if (Top == N-1)
+    if (top == Length-1)
     {
         printf("\n STACK OVERFLOW");
     }
     else
     {
-        Top++;
-        Array_Val[Top]=Val;
-        printf(" %d is Pushed into Stack", Val);
+        top++;
+        arr[top]=val;
+        printf(" %d is Pushed into Stack", val);
     }
     
 }
 
 void pop()
 {
-    int Val;
+    int val;
     
-    if (Top == -1)
+    if (top == -1)
     {
         printf("\n STACK UNDERFLOW");
     }
     else
     {
-        Val = Array_Val[Top];
-        Top--;
-        printf("\n The value poped : %d", Val);
+        val = arr[top];
+        top--;
+        printf("\n The value poped : %d", val);
     }
 }
 
 void peep()
 {
     
-    if (Top == -1)
+    if (top == -1)
     {
         printf("\n Stack is Empty");
     }
     else
     {
-        printf("\n The element at the top : %d", Array_Val[Top]);
+        printf("\n The element at the top : %d", arr[top]);
     }
 }
