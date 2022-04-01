@@ -65,7 +65,7 @@ void ent_num()
     Node *temp;
     
     printf("\n Enter the Number to insert into tree (-1 to Exit): ");
-    scanf("\%d", &num);
+    scanf("%d", &num);
     
     while(num != -1)
     {
