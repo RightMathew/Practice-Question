@@ -3,23 +3,19 @@
 #include<malloc.h>
 #define Length 100
 
-struct heap {
-    
-    int data;
-    int pos;
-    struct heap *next;
-    struct heap *prev;
-};
-
 
 void initialize();
+void swap(int *a, int *b);
+
+// MAX HEAP
+void insert_max(int val);
+void max_heapify(int i);
 void max();
 void max_val();
-void display();
+void display_max();
 
+int arr_max[Length], max_size = 0;
 
-
-int arr_max[Length];
 
 int main()
 {
@@ -78,7 +74,7 @@ void max()
     
     do 
     {
-        printf("\n ***** MIN HEAP ******");
+        printf("\n ***** MAX HEAP ******");
         
         printf("\n 1. Enter Values");
         printf("\n 2. Display");
@@ -96,7 +92,7 @@ void max()
                     
             case 2 :
             {
-                display();
+                display_max();
                 break;
             }
             
@@ -115,12 +111,87 @@ void max()
 
 void max_val()
 {
+    int arr[Length] = {3,4,9,5,2}, i = 5 , num;
     
+    for(int j = 0; j < i - 1; j++)
+    {
+        
+        insert_max(arr[j]);
+    }
     
 
 }
 
-void display()
+void display_max()
 {
+    
+    int i = 5; 
+    
+    printf("\n HEAP \n");
+    for(int j = 0; j < i ; j++)
+    {
+        
+        printf("\n%d ", arr_max[j]);
+    }
+    
+}
+
+void swap(int *a, int *b)
+{
+    
+    int temp = *b;
+    *b = *a;
+    *a = temp;
+    
+}
+
+void max_heapify(int i)
+{
+    
+    if (max_size == 1)
+    {
+        
+        printf("Only one element");
+    }
+    else
+    {
+        int large = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        if (left < max_size && arr_max[left] > arr_max[i])
+        {
+            large = left;
+        }
+        if (right < max_size && arr_max[right] > arr_max[i])
+        {
+            large = right;
+        }
+        if (large != i)
+        {
+            swap(&arr_max[i], &arr_max[large]);
+            max_heapify(large);
+        }
+    }
+    
+}
+
+void insert_max(int val)
+{
+    
+    if (max_size == 0)
+    {
+        arr_max[max_size] = val;
+        max_size++;
+    }
+    else
+    {
+        arr_max[max_size] = val;
+        max_size++;
+        
+        for(int i = (max_size/2)-1; i >=0; i--)
+        {
+            max_heapify(i);
+        }
+    }
     
 }
