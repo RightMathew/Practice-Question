@@ -1,149 +1,77 @@
 #include<stdio.h>
-#include<stdlib.h>
-#include<malloc.h>
+
 #define Length 100
 
-
-void initialize();
+void initalize();
 void swap(int *a, int *b);
 
-// MAX HEAP
+
+
+//MAX HEAP
 void insert_max(int val);
 void max_heapify(int i);
-void max();
-void max_val();
 void display_max();
 
 int arr_max[Length], max_size = 0;
 
-
 int main()
-{
-    initialize();
-    return 0;
-}
-
-void initialize()
-{
-    int ch;
-    
-    do {
-        
-        printf("\n ***** HEAP *****");
-        printf("\n 1. Max Heap");
-        printf("\n 2. Min Heap");
-        printf("\n 3. Exit");
-        printf("\n Enter Option : ");
-        scanf("%d", &ch);
-        
-        switch (ch)
-        {
-            case 1: 
-            {
-                max();
-                break;
-            }
-            
-            case 2 :
-            {
-                
-                break;
-                
-            }
-            
-            case 3 :
-            {
-                printf("\n Thank You");
-                break;
-            }
-            
-            default :
-            {
-                printf("\n Invalid Input");
-                break;
-            }
-            
-        }
-    } while(ch != 3);
-}
-
-void max()
-{
-    
-    int ch;
-    
-    do 
-    {
-        printf("\n ***** MAX HEAP ******");
-        
-        printf("\n 1. Enter Values");
-        printf("\n 2. Display");
-        printf("\n 3. Main Menu");
-        printf("\n Enter Option : ");
-        scanf("%d", &ch);
-                
-        switch(ch)
-        {
-            case 1 : 
-            {
-                max_val();
-                break;
-            }
-                    
-            case 2 :
-            {
-                display_max();
-                break;
-            }
-            
-            case 3 :
-            {
-                printf("\n Returning Main menu");
-                break;
-            }
-            default :
-                printf("\n Invalid Input");
-                break;
-            }
-        }while(ch != 3);
-    
-}
-
-void max_val()
 {
     int arr[Length] = {3,4,9,5,2}, i = 5 , num;
     
-    for(int j = 0; j < i - 1; j++)
+    /*do
+    {
+        printf("\n Enter the Number for Max-Heap (-1 to Exit): ");
+        scanf("%d", &num);
+        
+        arr[i] = num;
+        i++;
+    }
+    while(num != -1);
+    
+    
+    
+    for(int j = 0; j < i - 1 ; j++)
+    {
+        
+        printf("%d ", arr[j]);
+    }*/
+    
+    
+    for(int j = 0; j < i ; j++)
     {
         
         insert_max(arr[j]);
     }
     
-
+    display_max();
+    
+    
+    
+    
+    return 0;
 }
 
-void display_max()
+void insert_max(int val)
 {
     
-    int i = 5; 
-    
-    printf("\n HEAP \n");
-    for(int j = 0; j < i ; j++)
+    if (max_size == 0)
     {
+        arr_max[max_size] = val;
+        max_size++;
+    }
+    else
+    {
+        arr_max[max_size] = val;
+        max_size++;
         
-        printf("\n%d ", arr_max[j]);
+        for(int i = (max_size/2)-1; i >=0; i--)
+        {
+            max_heapify(i);
+        }
     }
     
 }
 
-void swap(int *a, int *b)
-{
-    
-    int temp = *b;
-    *b = *a;
-    *a = temp;
-    
-}
 
 void max_heapify(int i)
 {
@@ -175,23 +103,25 @@ void max_heapify(int i)
     
 }
 
-void insert_max(int val)
+
+void swap(int *a, int *b)
 {
     
-    if (max_size == 0)
+    int temp = *b;
+    *b = *a;
+    *a = temp;
+    
+}
+
+void display_max()
+{
+    int i = 5; 
+    
+    printf("\n HEAP \n");
+    for(int j = 0; j < i ; j++)
     {
-        arr_max[max_size] = val;
-        max_size++;
-    }
-    else
-    {
-        arr_max[max_size] = val;
-        max_size++;
         
-        for(int i = (max_size/2)-1; i >=0; i--)
-        {
-            max_heapify(i);
-        }
+        printf("\n%d ", arr_max[j]);
     }
     
 }
