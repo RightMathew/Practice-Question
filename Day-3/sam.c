@@ -36,7 +36,8 @@ void initialize()
         printf("\n 2. Display Values");
         printf("\n 3. MAX Heap");
         printf("\n 4. MIN Heap");
-        printf("\n 5. Exit");
+        printf("\n 5. Flush Data");
+        printf("\n 6. Exit");
         printf("\n Enter Option : ");
         scanf("%d", &ch);
         
@@ -64,6 +65,12 @@ void initialize()
             }
             case 5 :
             {
+                arr_size = -1;
+                printf("\n ----- Flushed. -----");
+                break;
+            }
+            case 6 :
+            {
                 printf("\n Thank You");
                 break;
             }
@@ -74,7 +81,7 @@ void initialize()
             }
         }
         
-    }while(ch != 4);
+    }while(ch != 6);
     
 }
 
@@ -101,7 +108,7 @@ void get_details()
     
 }
 
-// MAX HEAP
+// ****************************************  MAX HEAP ***************************************************
 
 void max()
 {
@@ -113,7 +120,8 @@ void max()
         printf("\n\n ***** MAX HEAP *****");
         printf("\n 1. Convert Array to Max Heap");
         printf("\n 2. Display Max Heap");
-        printf("\n 3. Main Menu");
+        printf("\n 3. Flush Data");
+        printf("\n 4. Main Menu");
         printf("\n Enter Option : ");
         scanf("%d", &ch);
         
@@ -132,6 +140,13 @@ void max()
             }
             case 3 :
             {
+                max_size = 0;
+                printf("\n ----- Flushed. -----");
+                break;
+                
+            }
+            case 4 :
+            {
                 printf("\n Returning Main Menu");
                 break;
             }
@@ -140,7 +155,7 @@ void max()
                 printf("\n Invalid Input");
             }
         }
-    }while(ch != 3);
+    }while(ch != 4);
     
 }
 
@@ -206,6 +221,8 @@ void max_heapify(int i)
     
 }
 
+// --------------------------------------------------------------------------------------------------------------------
+
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -216,11 +233,15 @@ void swap(int *a, int *b)
 
 void display(int arr[], int n)
 {
-    
-    for(int i = 0; i < n ; i++)
-    {
+    if (n == 0 || n == -1){
+        printf("\n The array is Empty");
+    }
+    else{
+        for(int i = 0; i < n ; i++)
+        {
+            printf("%d ", arr[i]);
+        }
         
-        printf("%d ", arr[i]);
     }
     
 }
