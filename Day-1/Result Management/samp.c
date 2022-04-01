@@ -6,7 +6,7 @@ struct student{
     
     int roll_no;
     char student_name[Length];
-    struct student *marks;
+    struct marks *mark_data;
     
 };
 
@@ -89,11 +89,14 @@ void admin()
             printf("\n 3. Update Student");
             printf("\n 4. Delete Student");
             printf("\n 5. Exit");
+            printf("\n Enter Option : ");
+            scanf("%d", &ch);
             switch(ch)
             {
                 case 1 :
                 {
                     add_student();
+                    break;
                 }
                 case 5:
                 {
@@ -156,9 +159,13 @@ void add_student()
         scanf("%d", &arr[i].roll_no);
         printf("Enter Student Name : ");
         scanf("%s", arr[i].student_name);
-        printf("\n\n -----Enter Marks-----");
+        printf("\n -----Enter Marks-----");
         printf("\n Enter C Marks : ");
-        scanf("%d", arr[i].marks->c);
+        scanf("%d", &arr[i].mark_data->c);
+        printf("\n Enter C++ Marks : ");
+        scanf("%d", &arr[i].mark_data->cpp);
+        printf("\n Enter Java Marks : ");
+        scanf("%d", &arr[i].mark_data->java);
         
     }
 }
