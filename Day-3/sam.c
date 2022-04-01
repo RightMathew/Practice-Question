@@ -33,9 +33,10 @@ void initialize()
     {
         printf("\n\n ***** HEAPS *****");
         printf("\n 1. Enter Values");
-        printf("\n 2. MAX Heap");
-        printf("\n 3. MIN Heap");
-        printf("\n 4. Exit");
+        printf("\n 2. Display Values");
+        printf("\n 3. MAX Heap");
+        printf("\n 4. MIN Heap");
+        printf("\n 5. Exit");
         printf("\n Enter Option : ");
         scanf("%d", &ch);
         
@@ -48,15 +49,20 @@ void initialize()
             }
             case 2 :
             {
-                max();
+                display(arr, arr_size);
                 break;
             }
             case 3 :
             {
-                
+                max();
                 break;
             }
             case 4 :
+            {
+                
+                break;
+            }
+            case 5 :
             {
                 printf("\n Thank You");
                 break;
@@ -120,6 +126,7 @@ void max()
             }
             case 2 :
             {
+                printf("\n\n -----MAX HEAP----- \n");
                 display(arr_max, max_size);
                 break;
             }
@@ -210,7 +217,6 @@ void swap(int *a, int *b)
 void display(int arr[], int n)
 {
     
-    printf("\n\n -----MAX HEAP----- \n");
     for(int i = 0; i < n ; i++)
     {
         
