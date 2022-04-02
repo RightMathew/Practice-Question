@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
-#define Length 20
+#define Length 6
 
 
 void initalize();
@@ -93,8 +93,15 @@ void dequeue()
     }
     else{
         
-        printf("\n Element deleted from the queue is %d ", q.arr[front]);
-        front++;
+        int val = q.arr[front];
+        
+        for(int i = 0; i < rear; i++)
+        {
+            q.arr[i] = q.arr[i+1];
+        }
+        rear--;
+        
+        printf("\n Element deleted from the queue is %d ", val);
     }
 }
 
