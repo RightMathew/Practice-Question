@@ -2,18 +2,21 @@
 
 void dashboard();
 void castvote();
-void voteconfirm(char* str[], int canch);
+void voteconfirm(char *str[], int canch);
 void result();
 void lock();
 
 int a1ab , a1cd, a2ef, a2gh, a2ij, lockflag;
-char* area1str[2] = {"ab","cd"};
-char* area2str[3] = {"ef","gh","ij"};
+char *area1str[10] = {"ab","cd"};
+char *area2str[10] = {"ef","gh","ij"};
 
+void (*ptr1)();
+void (*ptr2)(char *[], int);
 
 int main()
 {
-    dashboard();
+    ptr1 = dashboard;
+    ptr1();
     return 0;
 }
 
@@ -32,15 +35,18 @@ void dashboard()
         switch(chc)
         {
             case 1: { 
-                castvote();
+                ptr1 = castvote;
+                ptr1();
                 break;
             }
             case 2: {
-                result();
+                ptr1 = result;
+                ptr1();
                 break;
             }
             case 3: {
-                lock();
+                ptr1 = lock;
+                ptr1();
                 break;
             }
             case 99: {
@@ -96,7 +102,8 @@ void castvote()
             printf("\n----- Area - 1 ------\n");
             printf("Select the candidate you like to vote.\n1.ab\n2.cd\n");
             scanf("%d", &canch);
-            voteconfirm(area1str, canch);
+            ptr2 = voteconfirm;
+            ptr2(area1str, canch);
         }
         else if (ch == 2)
         {
@@ -104,7 +111,8 @@ void castvote()
             printf("\n----- Area - 2 ------\n");
             printf("Select the candidate you like to vote.\n1.ef\n2.gh\n3.ij\n");
             scanf("%d", &canch);
-            voteconfirm(area2str, canch);
+            ptr2 = voteconfirm;
+            ptr2(area2str, canch);
         }
     }
     else
