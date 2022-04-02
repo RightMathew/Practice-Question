@@ -48,8 +48,8 @@ void initalize(){
         printf("\n 6. Delete node at the Begining");
         printf("\n 7. Delete node at the End");
         printf("\n 8. Delete a node");
-        printf("\n 9. Delete entire List");
-        printf("\n 10. Search a Number");
+        printf("\n 9. Search in List");
+        printf("\n 10.  Delete entire List");
         printf("\n 11. Exit");
         printf("\n Enter option : ");
         scanf("%d", &ch);
@@ -98,12 +98,12 @@ void initalize(){
             }
             case 9:
             {
-                start = del_list(start);
+                start = search(start);
                 break;
             }
             case 10:
             {
-                start = search(start);
+                start = del_list(start);
                 break;
             }
             case 11:
@@ -155,6 +155,8 @@ struct node *create_ll(struct node *start)
         
     }
     
+    display(start);
+    
     return start;
 }
 
@@ -166,7 +168,7 @@ struct node *display(struct node *start)
     while(ptr != NULL)
     {
         
-        printf("\t %d", ptr -> data);
+        printf("|%d|-->", ptr -> data);
         ptr = ptr -> next;
     }
     
@@ -187,6 +189,7 @@ struct node *insert_beg(struct node *start)
     new_node -> next = start;
     start = new_node;
     printf("\n The node is Inserted at the Begining.");
+    display(start);
     return start;
 }
 
@@ -211,6 +214,7 @@ struct node *insert_end(struct node *start)
     ptr -> next = new_node;
     
     printf("\n The node is Inserted at the end.");
+    display(start);
     return start;
 }
 
@@ -221,7 +225,7 @@ struct node *delete_beg(struct node *start)
     ptr = start;
     start = start->next;
     free(ptr);
-    
+    display(start);
     return start;
     
 }
@@ -240,7 +244,7 @@ struct node *delete_end(struct node *start)
     
     preptr->next = NULL;
     free(ptr);
-    
+    display(start);
     return start;
     
 }
