@@ -31,10 +31,6 @@ void getdetails()
     printf("Enter the Postfix Expression : ");
     scanf("%s", exp);
     
-    for(int i = 0; i < 3;i++){
-        printf("%d\n", exp[i]-'0');
-    }
-    
     evaluateexp(exp);
 }
 
