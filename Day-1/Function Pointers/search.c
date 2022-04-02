@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-void search(int *arr, int n);
+void search(int arr[], int n);
 
-void (*i)(int *,int);
+void (*i)(int [],int);
 
 int main()
 {
@@ -29,16 +29,15 @@ int main()
     return 0;
 }
 
-void search(int *arr,int n)
+void search(int arr[],int n)
 {
-    int *a, p = 0, num;
-    a = arr;
+    int p = 0, num;
     
     printf("\nEnter the Number to be searched : ");
     scanf("%d", &num);
     
     for ( int i = 0; i < n; i++){
-        if (a[i] == num){
+        if (arr[i] == num){
             printf("The number %d is Present in postion : %d", num, i+1);
             p = 1;
         }
