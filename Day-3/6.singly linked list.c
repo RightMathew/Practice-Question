@@ -186,9 +186,8 @@ struct node *insert_beg(struct node *start)
     new_node -> data = num;
     new_node -> next = start;
     start = new_node;
-    return start;
-    
     printf("\n The node is Inserted at the Begining.");
+    return start;
 }
 
 struct node *insert_end(struct node *start)
