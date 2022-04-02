@@ -12,6 +12,8 @@ void max();
 void max_heap();
 void insert_max(int val);
 void max_heapify(int i);
+void insert_max_new();
+void delete_max();
 
 int arr_max[Length], max_size = 0;
 
@@ -21,6 +23,8 @@ void min();
 void min_heap();
 void insert_min(int val);
 void min_heapify(int i);
+void insert_min_new();
+void delete_min();
 
 int arr_min[Length], min_size = 0;
 
@@ -129,8 +133,10 @@ void max()
         printf("\n\n ***** MAX HEAP *****");
         printf("\n 1. Convert Array to Max Heap");
         printf("\n 2. Display Max Heap");
-        printf("\n 3. Flush Data");
-        printf("\n 4. Main Menu");
+        printf("\n 3. Add New Number");
+        printf("\n 4. Delete a Number");
+        printf("\n 5. Flush Data");
+        printf("\n 6. Main Menu");
         printf("\n Enter Option : ");
         scanf("%d", &ch);
         
@@ -149,12 +155,23 @@ void max()
             }
             case 3 :
             {
-                max_size = 0;
-                printf("\n ----- Flushed. -----");
+                insert_max_new();
                 break;
                 
             }
             case 4 :
+            {
+                delete_max();
+                break;
+            }
+            case 5 :
+            {
+                max_size = 0;
+                printf("\n ----- Flushed. -----");
+                break;
+                break;
+            }
+            case 6 :
             {
                 printf("\n Returning Main Menu");
                 break;
@@ -164,7 +181,7 @@ void max()
                 printf("\n Invalid Input");
             }
         }
-    }while(ch != 4);
+    }while(ch != 6);
     
 }
 
@@ -230,6 +247,25 @@ void max_heapify(int i)
     
 }
 
+void insert_max_new()
+{
+    
+    int val;
+    
+    printf("\n Enter the Value to be Inserted : ");
+    scanf("%d", &val);
+    
+    insert_max(val);
+    
+    display(arr_max, max_size);
+    
+}
+
+void delete_max()
+{
+    
+    
+}    
 // --------------------------------------------------------------------------------------------------------------------
 
 
@@ -245,8 +281,10 @@ void min()
         printf("\n\n ***** MAX HEAP *****");
         printf("\n 1. Convert Array to MIN Heap");
         printf("\n 2. Display MIN Heap");
-        printf("\n 3. Flush Data");
-        printf("\n 4. Main Menu");
+        printf("\n 3. Add New Number");
+        printf("\n 4. Delete a Number");
+        printf("\n 5. Flush Data");
+        printf("\n 6. Main Menu");
         printf("\n Enter Option : ");
         scanf("%d", &ch);
         
@@ -265,12 +303,22 @@ void min()
             }
             case 3 :
             {
+                insert_min_new();
+                break;
+            }
+            case 4 :
+            {
+                delete_min();
+                break;
+            }
+            case 5 :
+            {
                 min_size = 0;
                 printf("\n ----- Flushed. -----");
                 break;
                 
             }
-            case 4 :
+            case 6 :
             {
                 printf("\n Returning Main Menu");
                 break;
@@ -280,7 +328,7 @@ void min()
                 printf("\n Invalid Input");
             }
         }
-    }while(ch != 4);
+    }while(ch != 6);
     
 }
 
@@ -343,6 +391,26 @@ void min_heapify(int i)
         swap(&arr_min[i], &arr_min[small]);
         min_heapify(small);
     }
+}
+
+void insert_min_new()
+{
+    
+    int val;
+    
+    printf("\n Enter the Value to be Inserted : ");
+    scanf("%d", &val);
+    
+    insert_min(val);
+    
+    display(arr_min, min_size);
+    
+}
+
+void delete_min()
+{
+    
+    
 }
 
 //-----------------------------------------------------------------------------------------
