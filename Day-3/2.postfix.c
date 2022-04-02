@@ -1,3 +1,5 @@
+// 934*8+4/-
+
 #include<stdio.h>
 #include<conio.h>
 #include<ctype.h>
