@@ -7,7 +7,7 @@ int main()
     char str[50];
     
     printf("Enter the String to Reverse : ");
-    scanf("%s", &str);
+    scanf("%s", str);
     printf("The Reversed String : ");
     rev(str);
     
