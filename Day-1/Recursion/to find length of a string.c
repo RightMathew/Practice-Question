@@ -1,7 +1,7 @@
 #include<stdio.h>
 
 int len(char str[]);
-
+int n = 0;
 int main()
 {
     char str[50];
@@ -16,7 +16,7 @@ int main()
 }
 
 int len(char str[]){
-    static int n = 0;
+    
     
     if (str[n] == '\0')
         return n;
@@ -24,4 +24,3 @@ int len(char str[]){
         n++;
     len(str); 
     
-}
