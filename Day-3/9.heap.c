@@ -9,7 +9,7 @@ void display(int arr[], int n);
 
 // MAX HEAP
 void max();
-void max_heap();
+void max_heap(int arr[]);
 void insert_max(int val);
 void max_heapify(int i);
 void insert_max_new();
@@ -144,7 +144,7 @@ void max()
         {
             case 1 : 
             {
-                max_heap();
+                max_heap(arr);
                 break;
             }
             case 2 :
@@ -185,7 +185,7 @@ void max()
     
 }
 
-void max_heap()
+void max_heap(int arr[])
 {
     
     for(int i = 0; i < arr_size; i++)
@@ -263,7 +263,33 @@ void insert_max_new()
 
 void delete_max()
 {
+    int i, del_val, last_val;
     
+    printf("\n Enter the value to be Deleted : ");
+    scanf("%d", &del_val);
+    
+    for(i = 0 ; i < max_size; i++)
+    {
+        if (del_val == arr_max[i])
+        break;
+    }
+    
+    last_val = arr_max[max_size-1];
+    
+    swap(&arr_max[i], &arr_max[max_size-1]);
+    max_size--;
+    
+    int temp_arr[Length];
+    
+    for(int j = 0; j < max_size; j++)
+    {
+        temp_arr[j] = arr_max[j];
+    }
+    
+    max_size = 0;
+    max_heap(temp_arr);
+    
+    printf("\n The Number %d is Deleted. ", del_val);
     
 }    
 // --------------------------------------------------------------------------------------------------------------------
