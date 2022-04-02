@@ -26,6 +26,7 @@ void initialize()
     
     do 
     {
+        printf("\n\n STACK");
         printf("\n 1. PUSH");
         printf("\n 2. POP");
         printf("\n 3. PEEP");
@@ -51,6 +52,9 @@ void initialize()
             case 4:
                 ptr = display;
                 ptr();
+                break;
+            case 5:
+                printf("\n Thank You");
                 break;
             default :
                 printf("\n Invalid Option Choose Correct One : ");
